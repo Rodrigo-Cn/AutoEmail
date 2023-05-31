@@ -29,6 +29,9 @@ arquivo1 = open("dados.txt","r")
 analisador2 = arquivo1.read()
 arquivo1.close()
 
+#Antes de executar, salve o arquivo txt, tirando o comando de ler (read), e o if.
+#Após isso o códdigo pode ser executado normalmente.
+
 if analisador != analisador2:
   arquivo = open("dados.txt","w")
   arquivo.write(analisador)
