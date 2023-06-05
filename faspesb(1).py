@@ -29,23 +29,25 @@ arquivo1 = open("dados.txt","r")
 analisador2 = arquivo1.read()
 arquivo1.close()
 
-#Antes de executar, salve o arquivo txt, tirando o comando de ler (read), e o if.
-#Após isso o códdigo pode ser executado normalmente.
-
-if analisador != analisador2:
+if os.path.exists(nome_arquivo):
   arquivo = open("dados.txt","w")
   arquivo.write(analisador)
   arquivo.close()
+else:
+  if analisador != analisador2:
+    arquivo = open("dados.txt","w")
+    arquivo.write(analisador)
+    arquivo.close()
 
-  msg = MIMEMultipart()
-  msg['subject'] = 'Acabou de sair um novo edital da FAPESB'
-  message = quadro2.text+'\nEdital: '+url
-  msg['From'] = 'e-mail'
-  msg['To'] = 'e-mail'
-  msg.attach(MIMEText(message, 'plain'))
+    msg = MIMEMultipart()
+    msg['subject'] = 'Acabou de sair um novo edital da FAPESB'
+    message = quadro2.text+'\nEdital: '+url
+    msg['From'] = 'e-mail'
+    msg['To'] = 'e-mail'
+    msg.attach(MIMEText(message, 'plain'))
 
-  server = smtplib.SMTP('smtp.gmail.com:587')
-  server.starttls()
-  server.login('your e-mail adress','your password google')
-  server.sendmail(msg['From'],msg['To'],msg.as_string())
-  server.quit()
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login('your e-mail adress','your password google')
+    server.sendmail(msg['From'],msg['To'],msg.as_string())
+    server.quit()
